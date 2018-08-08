@@ -61,21 +61,26 @@ public class MainActivity extends AppCompatActivity {
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         final TextView timeLeft = findViewById(R.id.timeLeft);
-        final TextView result = findViewById(R.id.result);
-        result.setVisibility(View.INVISIBLE);
+        timeLeft.setVisibility(View.GONE);
+        final TextView resultText = findViewById(R.id.result);
+        resultText.setVisibility(View.GONE);
         final EditText entrySec = findViewById(R.id.entrySec);
         final EditText entryHour = findViewById(R.id.entryHour);
         final EditText entryMinute = findViewById(R.id.entryMin);
         final LinearLayout timer = findViewById(R.id.timer);
+        final TextView okText = findViewById(R.id.pause);
+        final TextView entryTime = findViewById(R.id.enterTime);
+        okText.setVisibility(View.GONE);
 
-        Button start = findViewById(R.id.button);
+        final Button start = findViewById(R.id.button);
+        final Button stopButton = findViewById(R.id.button2);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 timer.setVisibility(View.VISIBLE);
-                result.setVisibility(View.GONE);
+                resultText.setVisibility(View.GONE);
                 stop = false;
                 isStop = false;
                 long hr = Long.parseLong(entryHour.getText().toString()) * 3600;
@@ -91,18 +96,13 @@ public class MainActivity extends AppCompatActivity {
                         if (isStop) {
                             millisUntilFinished = 0;
                             timeLeft.setText(String.valueOf(millisUntilFinished));
-                            String text = String.format(Locale.getDefault(), "%02d hr %02d min %02d sec",
-                                    TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
-                            timer.setVisibility(View.INVISIBLE);
-                            timeLeft.setText(text);
-                            timeLeft.setVisibility(View.VISIBLE);
+                            timer.setVisibility(View.VISIBLE);
+                            timeLeft.setVisibility(View.GONE);
                             cancel();
 
                         } else {
                             timeLeft.setText(String.valueOf(millisUntilFinished / 1000));
-                            String text = String.format(Locale.getDefault(), "%02d hr %02d min %02d sec",
+                            String text = String.format(Locale.getDefault(), "%02d hr : %02d min : %02d sec",
                                     TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
                                     TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
                                     TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
-                        result.setVisibility(View.VISIBLE);
-                        result.animate().rotationX(360).setDuration(1000);
+                        resultText.setVisibility(View.VISIBLE);
+                        resultText.animate().rotationX(360).setDuration(1000);
                         countDownTimer.cancel();
 
                         int result = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC
@@ -127,6 +127,17 @@ public class MainActivity extends AppCompatActivity {
                             mediaPlayer.start();
 
                             mediaPlayer.setOnCompletionListener(completionListener);
+                            okText.setVisibility(View.VISIBLE);
+                            timeLeft.setVisibility(View.GONE);
+                            resultText.setVisibility(View.GONE);
+                            entryHour.setVisibility(View.GONE);
+                            entryMinute.setVisibility(View.GONE);
+                            entrySec.setVisibility(View.GONE);
+                            timer.setVisibility(View.INVISIBLE);
+                            stopButton.setVisibility(View.GONE);
+                            start.setVisibility(View.GONE);
+                            entryHour.setVisibility(View.GONE);
+                            entryTime.setVisibility(View.INVISIBLE);
                         }
 
 
@@ -135,21 +146,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button stopButton = findViewById(R.id.button2);
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                timeLeft.setVisibility(View.GONE);
+                timer.setVisibility(View.VISIBLE);
                 isStop = true;
             }
         });
 
-        result.setOnClickListener(new View.OnClickListener() {
+        okText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 releaseMediaPlayer();
                 timeLeft.setVisibility(View.GONE);
                 timer.setVisibility(View.VISIBLE);
-                result.setVisibility(View.INVISIBLE);
+                resultText.setVisibility(View.GONE);
+                entryHour.setVisibility(View.VISIBLE);
+                entryMinute.setVisibility(View.VISIBLE);
+                entrySec.setVisibility(View.VISIBLE);
+                okText.setVisibility(View.GONE);
+                stopButton.setVisibility(View.VISIBLE);
+                start.setVisibility(View.VISIBLE);
+                entryHour.setVisibility(View.VISIBLE);
+                entryTime.setVisibility(View.VISIBLE);
             }
         });
     }

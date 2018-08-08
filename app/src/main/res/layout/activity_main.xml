@@ -3,62 +3,79 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#78909C">
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="403dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="-1dp"
+            android:layout_marginTop="8dp"
+            android:background="#FFFFFF"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingHorizontal="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="238dp"
-                android:layout_height="88dp"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#78909C"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:text="Timer"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/enterTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="casual"
+                android:gravity="center"
                 android:paddingTop="16dp"
                 android:text="Enter Time"
                 android:textAllCaps="true"
-                android:textColor="#FFFFFF"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/timer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:background="#EEEEEE"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="26dp"
+                android:paddingBottom="26dp">
 
                 <EditText
                     android:id="@+id/entryHour"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
-                    android:background="#FFFFFF"
-                    android:padding="5dp"
+                    android:background="#EEEEEE"
+                    android:paddingTop="6dp"
                     android:text="00"
                     android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingTop="10dp"
+                    android:background="#EEEEEE"
+                    android:paddingTop="6dp"
                     android:text="hr : "
-                    android:textColor="#FFFFFF"
                     android:textSize="30sp" />
 
                 <EditText
@@ -66,17 +83,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
-                    android:background="#FFFFFF"
-                    android:padding="5dp"
+                    android:background="#EEEEEE"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="5dp"
                     android:text="00"
                     android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingTop="10dp"
+                    android:background="#EEEEEE"
+                    android:paddingTop="6dp"
                     android:text="min : "
-                    android:textColor="#FFFFFF"
                     android:textSize="30sp" />
 
                 <EditText
@@ -84,72 +103,94 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
-                    android:background="#FFFFFF"
-                    android:padding="5dp"
+                    android:background="#EEEEEE"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="5dp"
                     android:text="00"
                     android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingTop="10dp"
+                    android:background="#EEEEEE"
+                    android:paddingTop="6dp"
                     android:text="sec"
-                    android:textColor="#FFFFFF"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/timeLeft"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                tools:text="Time left"
-                android:textColor="#FFFFFF"
-                android:textSize="36sp" />
+                android:background="#EEEEEE"
+                android:gravity="center"
+                android:paddingTop="26dp"
+                android:paddingBottom="30dp"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                tools:text="Time left" />
+
             <TextView
                 android:id="@+id/result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text= "done"
+                android:background="@drawable/shape"
+                android:text=" Time up "
                 android:textAllCaps="true"
-                android:textStyle="bold"
-                android:background="#FFFFFF"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape"
+                android:padding="16dp"
+                android:text="   ok   "
+                android:textAllCaps="true"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="105dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="1.0">
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="start"
                 android:layout_gravity="bottom"
+                android:background="@drawable/shape"
+                android:text="start"
                 android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button2"
-                android:layout_gravity="bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/shape"
                 android:text="Stop"
                 android:textSize="20sp" />
-
         </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>
