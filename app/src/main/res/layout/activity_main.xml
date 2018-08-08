@@ -134,17 +134,6 @@
                 tools:text="Time left" />
 
             <TextView
-                android:id="@+id/result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/shape"
-                android:text=" Time up "
-                android:textAllCaps="true"
-                android:textSize="36sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/pause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -179,6 +168,7 @@
                 android:layout_gravity="bottom"
                 android:background="@drawable/shape"
                 android:text="start"
+                android:textColor="#388E3C"
                 android:textSize="20sp" />
 
             <Button
@@ -188,7 +178,8 @@
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/shape"
-                android:text="Stop"
+                android:text="Reset"
+                android:textColor="#F44336"
                 android:textSize="20sp" />
         </LinearLayout>
 

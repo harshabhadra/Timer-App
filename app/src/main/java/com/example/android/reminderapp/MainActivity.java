@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView timeLeft = findViewById(R.id.timeLeft);
         timeLeft.setVisibility(View.GONE);
-        final TextView resultText = findViewById(R.id.result);
-        resultText.setVisibility(View.GONE);
         final EditText entrySec = findViewById(R.id.entrySec);
         final EditText entryHour = findViewById(R.id.entryHour);
         final EditText entryMinute = findViewById(R.id.entryMin);
@@ -80,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 timer.setVisibility(View.VISIBLE);
-                resultText.setVisibility(View.GONE);
                 stop = false;
                 isStop = false;
                 long hr = Long.parseLong(entryHour.getText().toString()) * 3600;
@@ -114,8 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
-                        resultText.setVisibility(View.VISIBLE);
-                        resultText.animate().rotationX(360).setDuration(1000);
                         countDownTimer.cancel();
 
                         int result = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC
@@ -124,12 +119,10 @@ public class MainActivity extends AppCompatActivity {
                         if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 
                             mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.ring);
+                            mediaPlayer.setLooping(true);
                             mediaPlayer.start();
-
-                            mediaPlayer.setOnCompletionListener(completionListener);
                             okText.setVisibility(View.VISIBLE);
                             timeLeft.setVisibility(View.GONE);
-                            resultText.setVisibility(View.GONE);
                             entryHour.setVisibility(View.GONE);
                             entryMinute.setVisibility(View.GONE);
                             entrySec.setVisibility(View.GONE);
@@ -138,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                             start.setVisibility(View.GONE);
                             entryHour.setVisibility(View.GONE);
                             entryTime.setVisibility(View.INVISIBLE);
+
                         }
 
 
@@ -158,10 +152,10 @@ public class MainActivity extends AppCompatActivity {
         okText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 releaseMediaPlayer();
                 timeLeft.setVisibility(View.GONE);
                 timer.setVisibility(View.VISIBLE);
-                resultText.setVisibility(View.GONE);
                 entryHour.setVisibility(View.VISIBLE);
                 entryMinute.setVisibility(View.VISIBLE);
                 entrySec.setVisibility(View.VISIBLE);
