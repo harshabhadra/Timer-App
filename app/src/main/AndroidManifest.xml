@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/timer"
+        android:icon="@mipmap/timmer_icon"
         android:label="Timer"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"

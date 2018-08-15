@@ -25,6 +25,16 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     AudioManager audioManager;
 
+    final TextView timeLeft = findViewById(R.id.timeLeft);
+    final EditText entrySec = findViewById(R.id.entrySec);
+    final EditText entryHour = findViewById(R.id.entryHour);
+    final EditText entryMinute = findViewById(R.id.entryMin);
+    final LinearLayout timer = findViewById(R.id.timer);
+    final TextView okText = findViewById(R.id.pause);
+    final TextView entryTime = findViewById(R.id.enterTime);
+    final Button start = findViewById(R.id.button);
+    final Button stopButton = findViewById(R.id.button2);
+
     AudioManager.OnAudioFocusChangeListener changeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
@@ -59,19 +69,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-        final TextView timeLeft = findViewById(R.id.timeLeft);
         timeLeft.setVisibility(View.GONE);
-        final EditText entrySec = findViewById(R.id.entrySec);
-        final EditText entryHour = findViewById(R.id.entryHour);
-        final EditText entryMinute = findViewById(R.id.entryMin);
-        final LinearLayout timer = findViewById(R.id.timer);
-        final TextView okText = findViewById(R.id.pause);
-        final TextView entryTime = findViewById(R.id.enterTime);
-        okText.setVisibility(View.GONE);
 
-        final Button start = findViewById(R.id.button);
-        final Button stopButton = findViewById(R.id.button2);
+        okText.setVisibility(View.GONE);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
